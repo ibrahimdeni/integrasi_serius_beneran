@@ -92,22 +92,7 @@ function NavbarAdm() {
                 Transactions
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link to="/tvshows" className="nav-link text-light">
-                Tv Shows
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-light" to="/movies">
-                Movies
-              </Link>
-            </li> */}
           </ul>
-          {/* <div className="ms-5" style={style.brand}>
-            <Link to='/admin'>
-              <img src={Images.Dumbflix} alt="Dumbflix" />
-            </Link>
-          </div> */}
           <div>
             {isLoginAdmin ? (
               <Navbar bg="dark" variant="dark" expand="lg" className="navbar">
