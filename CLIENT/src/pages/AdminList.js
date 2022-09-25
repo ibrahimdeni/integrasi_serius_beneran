@@ -2,7 +2,7 @@ import React from "react";
 import TvShowsContainer from "../components/TvShowsContainer";
 import MoviesContainer from "../components/MoviesContainer";
 // import bgHero from '../images/la-casa-de-papel-logo.png'
-import Dropdown from "react-bootstrap/Dropdown";
+// import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import { API } from "../config/api";
 import { useQuery } from "react-query";

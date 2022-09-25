@@ -44,6 +44,8 @@ const AddFilm = () => {
   });
 
   const handleChange = (event) => {
+    // console.log("Name: ", event.target.name);
+    // console.log("Value: ", event.target.value);
     setForm({
       ...form,
       [event.target.name]:
@@ -76,7 +78,7 @@ const AddFilm = () => {
       formData.set("category_id", form?.category_id);
       formData.set("image", form.thumbnailfilm[0], form.thumbnailfilm[0].name);
 
-      console.log(form);
+      console.log("CategoiryId: ", form.category_id);
 
       const response = await API.post("/film", formData, config);
       console.log("IKI RESEKPON 2", response);
@@ -140,9 +142,7 @@ const AddFilm = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Select name="category_id" onChange={handleChange}>
-                <option disabled hidden>
-                  Category
-                </option>
+                <option hidden>Category</option>
                 <option value="1">Movies</option>
                 <option value="2">TV Series</option>
               </Form.Select>
