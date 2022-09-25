@@ -10,4 +10,6 @@ type FilmResponse struct {
 	Category      models.CategoryResponse	`json:"category"`
 	CategoryID    int    `json:"-"`
 	Description   string `json:"description" gorm:"type: varchar(255)"`
+	LinkFilm      string `json:"linkfilm"  gorm:"type: text" form:"linkfilm"`
+
 }

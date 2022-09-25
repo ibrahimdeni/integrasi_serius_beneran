@@ -8,6 +8,7 @@ type Film struct {
 	Category      CategoryResponse `json:"category"`
 	CategoryID    int              `json:"-"`
 	Description   string           `json:"description" gorm:"type: varchar(255)"`
+	LinkFilm      string             `json:"linkfilm"  gorm:"type: text" form:"linkfilm"`
 }
 
 type FilmResponse struct {
@@ -18,6 +19,7 @@ type FilmResponse struct {
 	Category      CategoryResponse `json:"category"`
 	CategoryID    int              `json:"-"`
 	Description   string           `json:"description"`
+	LinkFilm      string             `json:"linkfilm"`
 }
 
 type FilmInCategory struct {
@@ -28,6 +30,7 @@ type FilmInCategory struct {
 	Category      CategoryResponse `json:"category"`
 	CategoryID    int              `json:"-"`
 	Description   string           `json:"description"`
+	LinkFilm      string             `json:"linkfilm"`
 }
 
 func (FilmResponse) TableName() string {
