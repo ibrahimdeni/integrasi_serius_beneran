@@ -113,9 +113,9 @@ function RegisterModal({ handleClose, show }) {
         }
         if (response.data.data.role === "admin") {
           navigate("/add-film-list");
-        } else {
-          navigate("/");
-        }
+        } // } else {
+        //   navigate("/");
+        // }
         handleClose();
       }
     } catch (error) {

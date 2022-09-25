@@ -28,16 +28,13 @@ function App() {
   const navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext); //untuk manggil usecontext yang mana usecontext menampung usercontext
   const [isLogged, setIsLogged] = useState(false);
-  console.log("ini state", state);
-  useEffect(() => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
-    console.log(state.isLogin);
-  }, [state]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const checkUser = async () => {
     try {
+      if (localStorage.token) {
+        setAuthToken(localStorage.token);
+      }
       const response = await API.get("/check-auth");
       // return console.log("response",response.data.data)
       // If the token incorrect
@@ -57,127 +54,144 @@ function App() {
         type: "AUTH_SUCCESS",
         payload,
       });
+      setIsLogged(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     if (localStorage.token) {
       checkUser();
+    } else {
+      setIsLoading(false);
     }
-  }, []);
+    console.log("cobaa state", state);
+    console.log("isloading", isLoading);
+  }, [isLoading]);
 
   return (
     <Routes>
       <>
-        <Route />
+        {isLoading ? (
+          <></>
+        ) : (
+          <>
+            <Route />
 
-        {/* FOR USER */}
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
+            {/* FOR USER */}
+            <Route
+              path="/"
+              element={
+                state.isAdmin ? (
+                  <LayoutAdm>
+                    <Home />
+                  </LayoutAdm>
+                ) : (
+                  <Layout>
+                    <Home />
+                  </Layout>
+                )
+              }
+            />
 
-        <Route
-          path="/movies"
-          element={
-            <Layout>
-              <Movies />
-            </Layout>
-          }
-        />
+            <Route
+              path="/movies"
+              element={
+                <Layout>
+                  <Movies />
+                </Layout>
+              }
+            />
 
-        <Route
-          path="/tvshows"
-          element={
-            <Layout>
-              <TvShows />
-            </Layout>
-          }
-        />
+            <Route
+              path="/tvshows"
+              element={
+                <Layout>
+                  <TvShows />
+                </Layout>
+              }
+            />
 
-        <Route element={<PrivateRoute isLogged={isLogged} />}>
-          <Route
-            path="/payment"
-            element={
-              <Layout>
-                <Payment />
-              </Layout>
-            }
-          />
-        </Route>
+            {/* <Route element={<PrivateRoute isLogged={isLogged} />}> */}
+            <Route
+              path="/payment"
+              element={
+                <Layout>
+                  <Payment />
+                </Layout>
+              }
+            />
+            {/* </Route> */}
 
-        <Route element={<PrivateRoute isLogged={isLogged} />}>
-          <Route
-            path="/video/:id"
-            element={
-              <Layout>
-                <VideoDetail />
-              </Layout>
-            }
-          />
-        </Route>
+            {/* <Route element={<PrivateRoute isLogged={isLogged} />}> */}
+            <Route
+              path="/video/:id"
+              element={
+                <Layout>
+                  <VideoDetail />
+                </Layout>
+              }
+            />
+            {/* </Route> */}
 
-        <Route
-          path="/profile"
-          element={
-            <Layout>
-              <Profile />
-            </Layout>
-          }
-        />
+            <Route
+              path="/profile"
+              element={
+                <Layout>
+                  <Profile />
+                </Layout>
+              }
+            />
 
-        {/* FOR ADMIN */}
-        <Route element={<PrivateRoute isLogged={isLogged} />}>
-          <Route
-            path="/admin"
-            element={
-              <LayoutAdm>
-                <AdminHome />
-              </LayoutAdm>
-            }
-          />
-        </Route>
+            {/* FOR ADMIN */}
+            {/* <Route element={<PrivateRoute isLogged={isLogged} />}> */}
+            <Route
+              path="/admin"
+              element={
+                <LayoutAdm>
+                  <AdminHome />
+                </LayoutAdm>
+              }
+            />
+            {/* </Route> */}
 
-        <Route element={<PrivateRoute isLogged={isLogged} />}>
-          <Route
-            path="/transaction"
-            element={
-              <LayoutAdm>
-                <IncomingTransactions />
-              </LayoutAdm>
-            }
-          />
-        </Route>
+            {/* <Route element={<PrivateRoute isLogged={isLogged} />}> */}
+            <Route
+              path="/transaction"
+              element={
+                <LayoutAdm>
+                  <IncomingTransactions />
+                </LayoutAdm>
+              }
+            />
+            {/* </Route> */}
 
-        <Route element={<PrivateRoute isLogged={isLogged} />}>
-          <Route
-            path="/add-film-list"
-            element={
-              <LayoutAdm>
-                <AddFilmList />
-              </LayoutAdm>
-            }
-          />
-        </Route>
+            <Route element={<PrivateRoute isLogged={isLogged} />}>
+              <Route
+                path="/add-film-list"
+                element={
+                  <LayoutAdm>
+                    <AddFilmList />
+                  </LayoutAdm>
+                }
+              />
+            </Route>
 
-        <Route element={<PrivateRoute isLogged={isLogged} />}>
-          <Route
-            path="/add-film"
-            element={
-              <LayoutAdm>
-                <AddFilm />
-              </LayoutAdm>
-            }
-          />
-        </Route>
+            <Route element={<PrivateRoute isLogged={isLogged} />}>
+              <Route
+                path="/add-film"
+                element={
+                  <LayoutAdm>
+                    <AddFilm />
+                  </LayoutAdm>
+                }
+              />
+            </Route>
 
-        {/* <Route
+            {/* <Route
           path="/video-adm"
           element={
             <LayoutAdm>
@@ -185,6 +199,8 @@ function App() {
             </LayoutAdm>
           }
         /> */}
+          </>
+        )}
       </>
     </Routes>
   );
