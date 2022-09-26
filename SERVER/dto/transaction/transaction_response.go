@@ -10,7 +10,7 @@ type TransactionResponse struct {
 	Startdate 	time.Time 	`json:"startdate"`
 	Duedate  	time.Time 	`json:"duedate"`
 	User		models.UsersProfileResponse	`json:"userId"`
-	// UserID   	int       	`json:"user_id" gorm:"type: int"`
+	UserID   	int       	`json:"user_id" gorm:"type: int"`
 	Attache   	string   	`json:"attach" gorm:"type: text"`
 	Status   	string    	`json:"status" gorm:"type: text"`
 }

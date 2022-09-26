@@ -15,8 +15,9 @@ func TransactionRoutes(r *mux.Router) {
 
 	r.HandleFunc("/transactions", h.FindTransacations).Methods("GET")         					//get alll
 	r.HandleFunc("/transaction/{id}", h.GetTransaction).Methods("GET")       					//select
-	r.HandleFunc("/transaction",   middleware.Auth(middleware.ChekAdmin(middleware.UploadFile(h.CreateTransaction)))).Methods("POST")        	// add
-	r.HandleFunc("/transaction/{id}", middleware.Auth(middleware.ChekAdmin(h.UpdateTransaction))).Methods("PATCH")  	// edite
-	r.HandleFunc("/transaction/{id}", middleware.Auth(middleware.ChekAdmin(h.DeleteTransaction))).Methods("DELETE") 	// delete
+	r.HandleFunc("/transaction",   middleware.Auth(h.CreateTransaction)).Methods("POST")        	// add
+	// r.HandleFunc("/transaction/{id}", middleware.Auth(middleware.ChekAdmin(h.UpdateTransaction))).Methods("PATCH")  	// edite
+	r.HandleFunc("/notification", h.Notification).Methods("POST")
+	r.HandleFunc("/transaction/{id}", middleware.Auth(h.DeleteTransaction)).Methods("DELETE") 	// delete
 
 }

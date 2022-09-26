@@ -143,9 +143,6 @@ func (h *handler) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	if request.Address != "" {
 		user.Address = request.Address
 	}
-	if request.Subscribe != "" {
-		user.Subscribe = request.Subscribe
-	}
 	data, err := h.UserRepository.UpdateUser(user)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

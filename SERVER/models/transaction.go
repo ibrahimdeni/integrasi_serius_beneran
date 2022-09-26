@@ -12,6 +12,7 @@ type Transaction struct {
 	Status   string    				`json:"status" gorm:"type: text"`
 	User	 UsersProfileResponse	`json:"user"`
 	UserID	 int					`json:"-"`
+	Price     int          `json:"price"`
 }
 
 type TransactionInUser struct {

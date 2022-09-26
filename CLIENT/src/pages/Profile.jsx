@@ -9,7 +9,7 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import profileUser from "../images/profileUser.png";
 import { UserContext } from "../context/UserContext";

@@ -60,7 +60,7 @@ func (h *handlerAuth) Register(w http.ResponseWriter, r *http.Request) {
 	  Gender		: request.Gender,
 	  Phone		: request.Phone,
 	  Address		: request.Address,
-	  Subscribe	: "false",
+	  Subscribe	: false,
   	Role:     "Customer",
   }
 
@@ -100,7 +100,6 @@ func (h *handlerAuth) Login(w http.ResponseWriter, r *http.Request) {
     Gender: request.Gender,
     Phone: request.Phone,
     Address: request.Address,
-    Subscribe: request.Subscribe,
   }
 
   // Check email
@@ -169,13 +168,13 @@ func (h *handlerAuth) CheckAuth(w http.ResponseWriter, r *http.Request) {
 	}
 
 	CheckAuthResponse := authdto.CheckAuthResponse{
+    ID			: user.ID,
 		Fullname:  user.Fullname,
 		Email:     user.Email,
 		Gender:    user.Gender,
 		Phone:     user.Phone,
 		Address:   user.Address,
 		Role:      user.Role,
-		Subscribe: user.Subscribe,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
