@@ -19,7 +19,7 @@ import { useQuery } from "react-query";
 
 function Profile() {
   const [state, dispatch] = useContext(UserContext);
-  console.log("ini asu", state);
+  console.log("ini state diProfil", state);
 
   return (
     <div style={{ width: "100%", height: "100%" }} className="bg-dark">
@@ -39,7 +39,7 @@ function Profile() {
                       />
                       <div>
                         <h5>
-                          {state.user.fullname}
+                          {state.user.fullName}
                           {state.isAdmin && (
                             <Badge className="ms-1" bg="secondary">
                               Admin
