@@ -51,6 +51,8 @@ function BasicExample() {
       // Create variabel for store token payment from response here ...
       const token = response.data.data.token;
 
+      console.log(token);
+
       // Init Snap for display payment page with token here ...
       window.snap.pay(token, {
         onSuccess: function (result) {

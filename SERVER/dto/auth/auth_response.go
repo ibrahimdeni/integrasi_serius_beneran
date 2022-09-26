@@ -13,7 +13,7 @@ type LoginResponse struct {
 
 type CheckAuthResponse struct {
 	ID        int    `json:"id"`
-	Fullname  string `gorm:"type: varchar(255)" json:"fullName"`
+	Fullname  string `gorm:"type: varchar(255)" json:"fullname"`
 	Email     string `gorm:"type: varchar(255)" json:"email"`
 	Gender    string `gorm:"type: varchar(255)" json:"gender"`
 	Phone     string `gorm:"type: varchar(255)" json:"phone"`

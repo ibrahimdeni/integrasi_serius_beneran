@@ -39,7 +39,7 @@ function Profile() {
                       />
                       <div>
                         <h5>
-                          {state.user.fullName}
+                          {state.user.fullname}
                           {state.isAdmin && (
                             <Badge className="ms-1" bg="secondary">
                               Admin
@@ -67,7 +67,7 @@ function Profile() {
                         style={{ color: "red" }}
                       />
                       <div>
-                        <h5>{state.user.status}Active</h5>
+                        <h5>{state.user.subscribe}</h5>
                         <p className="text-muted">Status</p>
                       </div>
                     </div>

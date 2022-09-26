@@ -118,7 +118,7 @@ func (h *handlerTransaction) CreateTransaction(w http.ResponseWriter, r *http.Re
 	var TransIdIsMatch = false
 	var TransactionId int
 	for !TransIdIsMatch {
-		TransactionId = user_id + rand.Intn(1000) - rand.Intn(1000)
+		TransactionId = user_id + rand.Intn(1000) + rand.Intn(1000)
 		transactionData, _ := h.TransactionRepository.GetTransaction(TransactionId)
 		if transactionData.ID == 0 {
 			TransIdIsMatch = true
@@ -134,6 +134,8 @@ func (h *handlerTransaction) CreateTransaction(w http.ResponseWriter, r *http.Re
 		Status: "pending",
 		UserID: user_id,
 	}
+
+	fmt.Println("USER ID : ", user_id)
 
 	newTransaction, err := h.TransactionRepository.CreateTransaction(transaction)
 	if err != nil {
@@ -196,6 +198,8 @@ func (h *handlerTransaction) Notification(w http.ResponseWriter, r *http.Request
 	orderId := notificationPayload["order_id"].(string)
 
 	transaction, _ := h.TransactionRepository.GetOneTransaction(orderId)
+
+	fmt.Println("STATUS TRANSACTION :", transactionStatus)
 
 	if transactionStatus == "capture" {
 		if fraudStatus == "challenge" {
